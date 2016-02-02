@@ -1,7 +1,7 @@
 module.exports = {
-  entry: ["./app.js"],
+  entry: ["./src/app.js"],
   output: {
-    filename: "bundle.js"
+    filename: "./public/bundle.js"
   },
   module: {
     loaders: [{
@@ -14,4 +14,3 @@ module.exports = {
   },
   watch: true
 }
-

@@ -1,14 +1,15 @@
 {
   "name": "reactStarterKit",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A minimalist Node/React starter kit",
+  "main": "./server/server.js",
   "scripts": {
+    "dev": "webpack --watch & nodemon ./server/server.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["Node JS", "React", "Mongoose", "Redux"],
+  "author": "henrik.fogelberg@gmail.com",
+  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.4.5",
     "babel-loader": "^6.2.1",
@@ -19,6 +20,11 @@
   },
   "dependencies": {
     "babel-preset-react": "^6.3.13",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "mongoose": "^4.3.7",
+    "morgan": "^1.6.1",
+    "port": "^0.8.1",
     "react": "^0.14.7",
     "react-dom": "^0.14.7"
   }
