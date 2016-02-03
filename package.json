@@ -5,7 +5,7 @@
   "main": "./server/server.js",
   "scripts": {
     "dev": "webpack --watch & nodemon ./server/server.js --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test -u bdd -R spec"
   },
   "keywords": [
     "Node JS",
@@ -20,7 +20,10 @@
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-runtime": "^6.3.19",
+    "mocha": "^2.4.5",
     "node-libs-browser": "^1.0.0",
+    "should": "^8.2.1",
+    "supertest": "^1.1.0",
     "webpack": "^1.12.12"
   },
   "dependencies": {
