@@ -8,3 +8,8 @@ $ npm install
 $ mongod
 $ npm run dev
 ```
+
+And to run the excellent test:
+```
+$ npm test
+```
