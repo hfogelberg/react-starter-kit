@@ -7,7 +7,12 @@
     "dev": "webpack --watch & nodemon ./server/server.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Node JS", "React", "Mongoose", "Redux"],
+  "keywords": [
+    "Node JS",
+    "React",
+    "Mongoose",
+    "Redux"
+  ],
   "author": "henrik.fogelberg@gmail.com",
   "license": "MIT",
   "devDependencies": {
@@ -26,6 +31,7 @@
     "morgan": "^1.6.1",
     "port": "^0.8.1",
     "react": "^0.14.7",
-    "react-dom": "^0.14.7"
+    "react-dom": "^0.14.7",
+    "superagent": "^1.7.2"
   }
 }
