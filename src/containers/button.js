@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {callServer} from '../actions/actions';
+import {callServer} from '../actions/actions_index';
 
 export default class Button extends Component {
   constructor(props){

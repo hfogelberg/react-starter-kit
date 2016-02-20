@@ -1,13 +1,13 @@
-import React, {Component} from 'react';
-import Button from '../containers/button';
-import Hello from '../containers/hello';
+import React, { Component } from 'react';
+import Navbar from './navbar';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <Button />
-        <Hello />
+        <h1>React-Redux Starter Kit</h1>
+        <Navbar />
+        {this.props.children}
       </div>
     );
   }

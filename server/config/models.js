@@ -1,10 +1,10 @@
 module.exports = function(mongoose) {
-	var Todo = new mongoose.Schema({
-		text: String
+	var Hello = new mongoose.Schema({
+		name: String
 	});
 
 	var models = {
-		Todos: mongoose.model('Todos', Todo)
+		Hellos: mongoose.model('Hellos', Hello)
 	};
 
    return models;
