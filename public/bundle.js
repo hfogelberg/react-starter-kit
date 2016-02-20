@@ -30682,7 +30682,11 @@
 	          'React-Redux Starter Kit'
 	        ),
 	        _react2.default.createElement(_navbar2.default, null),
-	        this.props.children
+	        _react2.default.createElement(
+	          'div',
+	          { 'class': 'content' },
+	          this.props.children
+	        )
 	      );
 	    }
 	  }]);
@@ -30821,8 +30825,51 @@
 	var About = function About() {
 	  return _react2.default.createElement(
 	    'div',
-	    null,
-	    'About'
+	    { className: 'about col-sm-offset-1 col-sm-6' },
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'About'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'This app is written as a simple starter kit for a React application using Redux, React Router and React Form.'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'It includes the components and setup I tend to use, but if you like it, feel free to use it as it is or clone.'
+	    ),
+	    _react2.default.createElement('br', null),
+	    _react2.default.createElement(
+	      'div',
+	      null,
+	      _react2.default.createElement(
+	        'h3',
+	        null,
+	        'To Do'
+	      ),
+	      _react2.default.createElement(
+	        'ul',
+	        null,
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'Add log in with passport'
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'File upload'
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          'Add deployment start script to Webpack.'
+	        )
+	      )
+	    )
 	  );
 	};
 
@@ -31680,7 +31727,7 @@
 	          { className: 'active' },
 	          _react2.default.createElement(
 	            _reactRouter.Link,
-	            { to: '/hello' },
+	            { to: '/' },
 	            'Say Hello'
 	          )
 	        ),
