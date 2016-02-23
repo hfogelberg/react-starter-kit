@@ -31,8 +31,10 @@
   "dependencies": {
     "axios": "^0.9.1",
     "babel-preset-react": "^6.3.13",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
+    "jsonwebtoken": "^5.7.0",
     "mongoose": "^4.3.7",
     "morgan": "^1.6.1",
     "port": "^0.8.1",
