@@ -30,7 +30,7 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 							var token = jwt.sign({
 								name: user.username,
 							}, supersecret, {
-								expiresInMinutes: 24 * 60 * 60
+								expiresIn: 24 * 60 * 60
 							});
 
 							res.json({
@@ -85,7 +85,13 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 				if(err) {
 					res.send(JSON.stringify({err: err}));
 				} else {
-					res.json({message: 'User created with id ' + result._id});
+					var token = jwt.sign({
+						name: user.username,
+					}, supersecret, {
+						expiresIn: 24 * 60 * 60
+					});
+					var message = 'User created with id ' + result._id;
+					res.json({message: message, token: token});
 				}
 			});
 		});

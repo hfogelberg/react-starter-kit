@@ -6,7 +6,7 @@ export default function(state=INITIAL_STATE, action) {
 
   switch (action.type) {
     case SIGN_UP:
-      alert('You\'ve signed up! Now try logging in');
+      alert('You\'ve signed up! Now try logging in. The token is ' + action.payload.data.token);
       console.log('SIGN_UP action: ' + action.payload.data);
       return action.payload.data;
       break;

@@ -71,11 +71,11 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _routes = __webpack_require__(306);
+	var _routes = __webpack_require__(307);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reduxPromise = __webpack_require__(312);
+	var _reduxPromise = __webpack_require__(313);
 
 	var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
@@ -26190,7 +26190,7 @@
 
 	var _reducer_hello2 = _interopRequireDefault(_reducer_hello);
 
-	var _reducer_sign_up = __webpack_require__(319);
+	var _reducer_sign_up = __webpack_require__(306);
 
 	var _reducer_sign_up2 = _interopRequireDefault(_reducer_sign_up);
 
@@ -30622,25 +30622,57 @@
 	  value: true
 	});
 
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
+
+	  console.log('Action received', action);
+
+	  switch (action.type) {
+	    case _actions_index.SIGN_UP:
+	      alert('You\'ve signed up! Now try logging in. The token is ' + action.payload.data.token);
+	      console.log('SIGN_UP action: ' + action.payload.data);
+	      return action.payload.data;
+	      break;
+	    default:
+	      return state;
+	      break;
+	  }
+	};
+
+	var _actions_index = __webpack_require__(288);
+
+	var INITIAL_STATE = { message: '' };
+
+/***/ },
+/* 307 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	var _reactRouter = __webpack_require__(181);
 
-	var _app = __webpack_require__(307);
+	var _app = __webpack_require__(308);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _hello = __webpack_require__(309);
+	var _hello = __webpack_require__(310);
 
 	var _hello2 = _interopRequireDefault(_hello);
 
-	var _about = __webpack_require__(310);
+	var _about = __webpack_require__(311);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _signup = __webpack_require__(311);
+	var _signup = __webpack_require__(312);
 
 	var _signup2 = _interopRequireDefault(_signup);
 
@@ -30655,7 +30687,7 @@
 	);
 
 /***/ },
-/* 307 */
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30670,7 +30702,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _navbar = __webpack_require__(308);
+	var _navbar = __webpack_require__(309);
 
 	var _navbar2 = _interopRequireDefault(_navbar);
 
@@ -30718,7 +30750,7 @@
 	exports.default = App;
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30795,7 +30827,7 @@
 	exports.default = Navbar;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30905,7 +30937,7 @@
 	}, null, { sayHello: _actions_index.sayHello })(Hello);
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30974,7 +31006,7 @@
 	exports.default = About;
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31105,7 +31137,7 @@
 	}, null, { signUp: _actions_index.signUp })(SignUp);
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31116,7 +31148,7 @@
 
 	exports['default'] = promiseMiddleware;
 
-	var _fluxStandardAction = __webpack_require__(313);
+	var _fluxStandardAction = __webpack_require__(314);
 
 	function isPromise(val) {
 	  return val && typeof val.then === 'function';
@@ -31143,7 +31175,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31154,7 +31186,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _lodashIsplainobject = __webpack_require__(314);
+	var _lodashIsplainobject = __webpack_require__(315);
 
 	var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -31173,7 +31205,7 @@
 	}
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31184,9 +31216,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseFor = __webpack_require__(315),
-	    isArguments = __webpack_require__(316),
-	    keysIn = __webpack_require__(317);
+	var baseFor = __webpack_require__(316),
+	    isArguments = __webpack_require__(317),
+	    keysIn = __webpack_require__(318);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -31282,7 +31314,7 @@
 
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports) {
 
 	/**
@@ -31336,7 +31368,7 @@
 
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports) {
 
 	/**
@@ -31587,7 +31619,7 @@
 
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31598,8 +31630,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var isArguments = __webpack_require__(316),
-	    isArray = __webpack_require__(318);
+	var isArguments = __webpack_require__(317),
+	    isArray = __webpack_require__(319);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -31725,7 +31757,7 @@
 
 
 /***/ },
-/* 318 */
+/* 319 */
 /***/ function(module, exports) {
 
 	/**
@@ -31909,38 +31941,6 @@
 
 	module.exports = isArray;
 
-
-/***/ },
-/* 319 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
-	exports.default = function () {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
-	  var action = arguments[1];
-
-	  console.log('Action received', action);
-
-	  switch (action.type) {
-	    case _actions_index.SIGN_UP:
-	      alert('You\'ve signed up! Now try logging in');
-	      console.log('SIGN_UP action: ' + action.payload.data);
-	      return action.payload.data;
-	      break;
-	    default:
-	      return state;
-	      break;
-	  }
-	};
-
-	var _actions_index = __webpack_require__(288);
-
-	var INITIAL_STATE = { message: '' };
 
 /***/ }
 /******/ ]);
