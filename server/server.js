@@ -31,7 +31,7 @@ app.use(function(req, res, next) {
 mongoose.connect(database.url);
 var models = require('./config/models')(mongoose, bcrypt);
 
-require('./api')(apiRouter, models);
+require('./api')(apiRouter, models, jwt, supersecret);
 app.use('/api', apiRouter);
 
 // Default route

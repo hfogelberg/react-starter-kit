@@ -12,11 +12,9 @@ module.exports = function(mongoose, bcrypt) {
 		var user = this;
 		if(!user.isModified('password')) return next();
 
-		bcrypt.hash(user.password, null, null, function(err, hash){
-			if (err) return next(err);
-			user.password = hash;
-			next();
-		});
+		var salt = bcrypt.genSaltSync(10);
+		user.password = bcrypt.hashSync(user.password, salt);
+		next();
 	});
 
 	User.methods.comparePassword = function(password) {

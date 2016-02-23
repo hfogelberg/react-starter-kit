@@ -1,4 +1,49 @@
-module.exports = function(apiRouter, models){
+module.exports = function(apiRouter, models, jwt, supersecret){
+	// Return JSON Web Token if user is authenticated
+	// The token will be used by the middleware for all requests that require login
+	apiRouter.route('/authenticate')
+		.post(function(req, res) {
+			console.log('POST authenticate', req.body);
+			models.Users.findOne({
+				username: req.body.username
+			}, function(err, user) {
+				console.log('Selecting user');
+				if(err) {
+					throw err;
+				} else {
+					if(!user) {
+						console.log('No user found');
+						res.json({
+							success: false,
+							message: 'No user found'
+						});
+					} else if (user) {
+						// Check password
+						console.log('User found', user);
+						var validPassword = user.comparePassword(req.body.password);
+						if(!validPassword) {
+							res.json({
+								success: false,
+								message: 'Wrong password'
+							});
+						} else {
+							var token = jwt.sign({
+								name: user.username,
+							}, supersecret, {
+								expiresInMinutes: 24 * 60 * 60
+							});
+
+							res.json({
+								success: true,
+								message: 'Enjoy your token',
+								token: token
+							})
+						}
+					}
+				}
+			})
+		});
+
 	// middleware
 	apiRouter.use(function(req, res, next) {
 	  console.log('API called ' + req.body);
