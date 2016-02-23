@@ -75,7 +75,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reduxPromise = __webpack_require__(311);
+	var _reduxPromise = __webpack_require__(312);
 
 	var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
@@ -26190,10 +26190,15 @@
 
 	var _reducer_hello2 = _interopRequireDefault(_reducer_hello);
 
+	var _reducer_sign_up = __webpack_require__(319);
+
+	var _reducer_sign_up2 = _interopRequireDefault(_reducer_sign_up);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
 	  message: _reducer_hello2.default,
+	  user: _reducer_sign_up2.default,
 	  form: _reduxForm.reducer
 	});
 
@@ -29484,7 +29489,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.SAY_HELLO = undefined;
+	exports.SIGN_UP = exports.SAY_HELLO = undefined;
+	exports.signUp = signUp;
 	exports.sayHello = sayHello;
 
 	var _axios = __webpack_require__(289);
@@ -29494,6 +29500,16 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var SAY_HELLO = exports.SAY_HELLO = 'SAY_HELLO';
+	var SIGN_UP = exports.SIGN_UP = 'SIGN_UP';
+
+	function signUp(props) {
+	  var request = _axios2.default.post('/api/users', props);
+	  console.log('SIGN_UP request', request);
+	  return {
+	    type: SIGN_UP,
+	    payload: request
+	  };
+	}
 
 	function sayHello(props) {
 	  var request = _axios2.default.post('/api/hello', props);
@@ -30624,13 +30640,18 @@
 
 	var _about2 = _interopRequireDefault(_about);
 
+	var _signup = __webpack_require__(311);
+
+	var _signup2 = _interopRequireDefault(_signup);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _app2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _hello2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default })
 	);
 
 /***/ },
@@ -30753,6 +30774,15 @@
 	            _reactRouter.Link,
 	            { to: '/about' },
 	            'About'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/signup' },
+	            'Sign up'
 	          )
 	        )
 	      );
@@ -30949,13 +30979,144 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reduxForm = __webpack_require__(239);
+
+	var _actions_index = __webpack_require__(288);
+
+	var _reactRouter = __webpack_require__(181);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SignUp = function (_Component) {
+	  _inherits(SignUp, _Component);
+
+	  function SignUp() {
+	    _classCallCheck(this, SignUp);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignUp).apply(this, arguments));
+	  }
+
+	  _createClass(SignUp, [{
+	    key: 'onSubmit',
+	    value: function onSubmit(props) {
+	      console.log('onSubmit', props);
+	      this.props.signUp(props);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var _props$fields = _props.fields;
+	      var username = _props$fields.username;
+	      var password = _props$fields.password;
+	      var handleSubmit = _props.handleSubmit;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-offset-1 col-sm-6' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Sign up'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: handleSubmit(this.onSubmit.bind(this)) },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group ' + (username.touched && username.invalid ? 'has-danger' : '') },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'User name'
+	            ),
+	            _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, username)),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'text-help' },
+	              username.touched ? username.error : ''
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group ' + (password.touched && password.invalid ? 'has-danger' : '') },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
+	            _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, password)),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'text-help' },
+	              password.touched ? password.error : ''
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', className: 'btn btn-primary' },
+	            'Submit'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SignUp;
+	}(_react.Component);
+
+	function validate(values) {
+	  var errors = {};
+
+	  if (!values.username) {
+	    errors.title = 'Enter a user name';
+	  }
+
+	  if (!values.password) {
+	    errors.title = 'Enter a password';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'SignUpForm',
+	  fields: ['username', 'password'],
+	  validate: validate
+	}, null, { signUp: _actions_index.signUp })(SignUp);
+
+/***/ },
+/* 312 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	exports.__esModule = true;
 
 	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 	exports['default'] = promiseMiddleware;
 
-	var _fluxStandardAction = __webpack_require__(312);
+	var _fluxStandardAction = __webpack_require__(313);
 
 	function isPromise(val) {
 	  return val && typeof val.then === 'function';
@@ -30982,7 +31143,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30993,7 +31154,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _lodashIsplainobject = __webpack_require__(313);
+	var _lodashIsplainobject = __webpack_require__(314);
 
 	var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -31012,7 +31173,7 @@
 	}
 
 /***/ },
-/* 313 */
+/* 314 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31023,9 +31184,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseFor = __webpack_require__(314),
-	    isArguments = __webpack_require__(315),
-	    keysIn = __webpack_require__(316);
+	var baseFor = __webpack_require__(315),
+	    isArguments = __webpack_require__(316),
+	    keysIn = __webpack_require__(317);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -31121,7 +31282,7 @@
 
 
 /***/ },
-/* 314 */
+/* 315 */
 /***/ function(module, exports) {
 
 	/**
@@ -31175,7 +31336,7 @@
 
 
 /***/ },
-/* 315 */
+/* 316 */
 /***/ function(module, exports) {
 
 	/**
@@ -31426,7 +31587,7 @@
 
 
 /***/ },
-/* 316 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31437,8 +31598,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var isArguments = __webpack_require__(315),
-	    isArray = __webpack_require__(317);
+	var isArguments = __webpack_require__(316),
+	    isArray = __webpack_require__(318);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -31564,7 +31725,7 @@
 
 
 /***/ },
-/* 317 */
+/* 318 */
 /***/ function(module, exports) {
 
 	/**
@@ -31748,6 +31909,38 @@
 
 	module.exports = isArray;
 
+
+/***/ },
+/* 319 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
+
+	  console.log('Action received', action);
+
+	  switch (action.type) {
+	    case _actions_index.SIGN_UP:
+	      alert('You\'ve signed up! Now try logging in');
+	      console.log('SIGN_UP action: ' + action.payload.data);
+	      return action.payload.data;
+	      break;
+	    default:
+	      return state;
+	      break;
+	  }
+	};
+
+	var _actions_index = __webpack_require__(288);
+
+	var INITIAL_STATE = { message: '' };
 
 /***/ }
 /******/ ]);
