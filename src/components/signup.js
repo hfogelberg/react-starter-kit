@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {signUp} from '../actions/actions_index';
-import { Link } from 'react-router';
 
 class SignUp extends Component {
   onSubmit(props) {
@@ -26,7 +26,7 @@ class SignUp extends Component {
 
           <div className={`form-group ${password.touched && password.invalid ? 'has-danger' : ''}`}>
             <label>Password</label>
-            <input type='text' className='form-control' {...password}></input>
+            <input type='password' className='form-control' {...password}></input>
             <div className='text-help'>
               {password.touched ? password.error : ''}
             </div>
@@ -34,6 +34,7 @@ class SignUp extends Component {
 
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
+        <br />
       </div>
     );
   }

@@ -30630,7 +30630,7 @@
 
 	  switch (action.type) {
 	    case _actions_index.SIGN_UP:
-	      alert('You\'ve signed up! Now try logging in. The token is ' + action.payload.data.token);
+	      alert('You\'ve signed up! Now try logging in.');
 	      console.log('SIGN_UP action: ' + action.payload.data);
 	      return action.payload.data;
 	      break;
@@ -30789,7 +30789,7 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'ul',
-	        { className: 'nav nav-pills col-sm-offset-1 col-sm-6' },
+	        { className: 'nav nav-pills col-sm-offset-1' },
 	        _react2.default.createElement(
 	          'li',
 	          { className: 'active' },
@@ -30810,11 +30810,35 @@
 	        ),
 	        _react2.default.createElement(
 	          'li',
-	          null,
+	          { className: 'pull-right dropdown' },
 	          _react2.default.createElement(
-	            _reactRouter.Link,
-	            { to: '/signup' },
-	            'Sign up'
+	            'a',
+	            { className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
+	            _react2.default.createElement('i', { className: 'fa fa-user' }),
+	            ' User ',
+	            _react2.default.createElement('span', { className: 'caret' })
+	          ),
+	          _react2.default.createElement(
+	            'ul',
+	            { className: 'dropdown-menu' },
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                _reactRouter.Link,
+	                { to: '/signup' },
+	                'Sign up'
+	              )
+	            ),
+	            _react2.default.createElement(
+	              'li',
+	              null,
+	              _react2.default.createElement(
+	                'a',
+	                { href: '#' },
+	                'Log in'
+	              )
+	            )
 	          )
 	        )
 	      );
@@ -31023,11 +31047,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactRedux = __webpack_require__(160);
+
 	var _reduxForm = __webpack_require__(239);
 
 	var _actions_index = __webpack_require__(288);
-
-	var _reactRouter = __webpack_require__(181);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31096,7 +31120,7 @@
 	              null,
 	              'Password'
 	            ),
-	            _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, password)),
+	            _react2.default.createElement('input', _extends({ type: 'password', className: 'form-control' }, password)),
 	            _react2.default.createElement(
 	              'div',
 	              { className: 'text-help' },
@@ -31108,7 +31132,8 @@
 	            { type: 'submit', className: 'btn btn-primary' },
 	            'Submit'
 	          )
-	        )
+	        ),
+	        _react2.default.createElement('br', null)
 	      );
 	    }
 	  }]);
