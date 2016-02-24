@@ -11,6 +11,7 @@ Yet another React Starter Kit. It includes
 - Kharma plugged in (but no tests)
 
 ##To Do
+- Clean up and make more DRY
 - Run under HTTPS
 - Improve Webpack with deployment script
 
