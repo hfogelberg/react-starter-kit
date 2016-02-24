@@ -10,15 +10,6 @@ const About = () =>{
       <p>
         It includes the components and setup I tend to use, but if you like it, feel free to use it as it is or clone.
       </p>
-      <br />
-      <div>
-        <h3>To Do</h3>
-        <ul>
-          <li>Add log in with passport</li>
-          <li>File upload</li>
-          <li>Add deployment start script to Webpack.</li>
-        </ul>
-      </div>
     </div>
   );
 };

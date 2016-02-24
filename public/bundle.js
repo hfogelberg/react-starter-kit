@@ -31010,35 +31010,6 @@
 	      'p',
 	      null,
 	      'It includes the components and setup I tend to use, but if you like it, feel free to use it as it is or clone.'
-	    ),
-	    _react2.default.createElement('br', null),
-	    _react2.default.createElement(
-	      'div',
-	      null,
-	      _react2.default.createElement(
-	        'h3',
-	        null,
-	        'To Do'
-	      ),
-	      _react2.default.createElement(
-	        'ul',
-	        null,
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'Add log in with passport'
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'File upload'
-	        ),
-	        _react2.default.createElement(
-	          'li',
-	          null,
-	          'Add deployment start script to Webpack.'
-	        )
-	      )
 	    )
 	  );
 	};
