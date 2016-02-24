@@ -91,7 +91,12 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 						expiresIn: 24 * 60 * 60
 					});
 					var message = 'User created with id ' + result._id;
-					res.json({message: message, token: token});
+					console.log(message);
+					console.log('Token: ' + token);
+					res.json({
+						message: message,
+						token: token
+					});
 				}
 			});
 		});

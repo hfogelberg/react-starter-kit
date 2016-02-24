@@ -5,7 +5,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <ul className="nav nav-pills col-sm-offset-1">
-        <li className="active"><Link to='/'>Say Hello</Link></li>
+        <li className="active"><Link to='/'><i className="fa fa-lg fa-home"></i> Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li className="pull-right dropdown">
           <a className="dropdown-toggle" data-toggle="dropdown"><i className="fa fa-lg fa-user"></i> User <span className="caret"></span></a>

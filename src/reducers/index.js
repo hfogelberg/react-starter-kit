@@ -7,7 +7,6 @@ import LoginReducer from './reducer_login';
 const rootReducer = combineReducers({
   message: HelloReducer,
   user: SignupReducer,
-  authenticated: LoginReducer,
   form: formReducer
 });
 

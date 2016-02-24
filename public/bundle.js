@@ -71,11 +71,11 @@
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
-	var _routes = __webpack_require__(307);
+	var _routes = __webpack_require__(308);
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _reduxPromise = __webpack_require__(313);
+	var _reduxPromise = __webpack_require__(315);
 
 	var _reduxPromise2 = _interopRequireDefault(_reduxPromise);
 
@@ -26194,7 +26194,7 @@
 
 	var _reducer_sign_up2 = _interopRequireDefault(_reducer_sign_up);
 
-	var _reducer_login = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./reducer_login\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _reducer_login = __webpack_require__(307);
 
 	var _reducer_login2 = _interopRequireDefault(_reducer_login);
 
@@ -26203,7 +26203,6 @@
 	var rootReducer = (0, _redux.combineReducers)({
 	  message: _reducer_hello2.default,
 	  user: _reducer_sign_up2.default,
-	  authenticated: _reducer_login2.default,
 	  form: _reduxForm.reducer
 	});
 
@@ -29468,11 +29467,8 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
 	  var action = arguments[1];
 
-	  console.log('Action received', action);
-
 	  switch (action.type) {
 	    case _actions_index.SAY_HELLO:
-	      console.log(action.payload.data);
 	      return action.payload.data;
 	      break;
 	    default:
@@ -29511,7 +29507,6 @@
 
 	function login(props) {
 	  var request = _axios2.default.post('/api/authenticate', props);
-	  console.log('LOGIN request', request);
 	  return {
 	    type: LOGIN,
 	    payload: request
@@ -29520,7 +29515,6 @@
 
 	function signUp(props) {
 	  var request = _axios2.default.post('/api/users', props);
-	  console.log('SIGN_UP request', request);
 	  return {
 	    type: SIGN_UP,
 	    payload: request
@@ -29529,8 +29523,6 @@
 
 	function sayHello(props) {
 	  var request = _axios2.default.post('/api/hello', props);
-
-	  console.log('Request', props);
 	  return {
 	    type: SAY_HELLO,
 	    payload: request
@@ -30642,12 +30634,8 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
 	  var action = arguments[1];
 
-	  console.log('Action received', action);
-
 	  switch (action.type) {
 	    case _actions_index.SIGN_UP:
-	      alert('You\'ve signed up! Now try logging in.');
-	      console.log('SIGN_UP action: ' + action.payload.data);
 	      return action.payload.data;
 	      break;
 	    default:
@@ -30658,10 +30646,16 @@
 
 	var _actions_index = __webpack_require__(288);
 
-	var INITIAL_STATE = { message: '' };
+	var INITIAL_STATE = { user: {} };
 
 /***/ },
 /* 307 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+/***/ },
+/* 308 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30676,21 +30670,25 @@
 
 	var _reactRouter = __webpack_require__(181);
 
-	var _app = __webpack_require__(308);
+	var _app = __webpack_require__(309);
 
 	var _app2 = _interopRequireDefault(_app);
 
-	var _hello = __webpack_require__(310);
+	var _hello = __webpack_require__(311);
 
 	var _hello2 = _interopRequireDefault(_hello);
 
-	var _about = __webpack_require__(311);
+	var _about = __webpack_require__(312);
 
 	var _about2 = _interopRequireDefault(_about);
 
-	var _signup = __webpack_require__(312);
+	var _signup = __webpack_require__(313);
 
 	var _signup2 = _interopRequireDefault(_signup);
+
+	var _signup_response = __webpack_require__(314);
+
+	var _signup_response2 = _interopRequireDefault(_signup_response);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30699,11 +30697,12 @@
 	  { path: '/', component: _app2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _hello2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/signupresponse', component: _signup_response2.default })
 	);
 
 /***/ },
-/* 308 */
+/* 309 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30718,7 +30717,7 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _navbar = __webpack_require__(309);
+	var _navbar = __webpack_require__(310);
 
 	var _navbar2 = _interopRequireDefault(_navbar);
 
@@ -30766,7 +30765,7 @@
 	exports.default = App;
 
 /***/ },
-/* 309 */
+/* 310 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30812,7 +30811,8 @@
 	          _react2.default.createElement(
 	            _reactRouter.Link,
 	            { to: '/' },
-	            'Say Hello'
+	            _react2.default.createElement('i', { className: 'fa fa-lg fa-home' }),
+	            ' Home'
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -30867,7 +30867,7 @@
 	exports.default = Navbar;
 
 /***/ },
-/* 310 */
+/* 311 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -30972,12 +30972,12 @@
 
 	exports.default = (0, _reduxForm.reduxForm)({
 	  form: 'SayHelloForm',
-	  fields: ['name', 'breed'],
+	  fields: ['name'],
 	  validate: validate
 	}, null, { sayHello: _actions_index.sayHello })(Hello);
 
 /***/ },
-/* 311 */
+/* 312 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31017,7 +31017,7 @@
 	exports.default = About;
 
 /***/ },
-/* 312 */
+/* 313 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31040,6 +31040,8 @@
 
 	var _actions_index = __webpack_require__(288);
 
+	var _reactRouter = __webpack_require__(181);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31061,7 +31063,9 @@
 	    key: 'onSubmit',
 	    value: function onSubmit(props) {
 	      console.log('onSubmit', props);
-	      this.props.signUp(props);
+	      this.props.signUp(props).then(function () {
+	        _reactRouter.browserHistory.push('/signupresponse');
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -31149,7 +31153,83 @@
 	}, null, { signUp: _actions_index.signUp })(SignUp);
 
 /***/ },
-/* 313 */
+/* 314 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(160);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var SignupReponse = function (_Component) {
+	  _inherits(SignupReponse, _Component);
+
+	  function SignupReponse() {
+	    _classCallCheck(this, SignupReponse);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(SignupReponse).apply(this, arguments));
+	  }
+
+	  _createClass(SignupReponse, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Signup Response'
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Message: ',
+	            this.props.user.message
+	          ),
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            'Token: ',
+	            this.props.user.token
+	          )
+	        )
+	      );
+	    }
+	  }]);
+
+	  return SignupReponse;
+	}(_react.Component);
+
+	function mapStateToProps(state) {
+	  return { user: state.user };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps)(SignupReponse);
+
+/***/ },
+/* 315 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31160,7 +31240,7 @@
 
 	exports['default'] = promiseMiddleware;
 
-	var _fluxStandardAction = __webpack_require__(314);
+	var _fluxStandardAction = __webpack_require__(316);
 
 	function isPromise(val) {
 	  return val && typeof val.then === 'function';
@@ -31187,7 +31267,7 @@
 	module.exports = exports['default'];
 
 /***/ },
-/* 314 */
+/* 316 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -31198,7 +31278,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _lodashIsplainobject = __webpack_require__(315);
+	var _lodashIsplainobject = __webpack_require__(317);
 
 	var _lodashIsplainobject2 = _interopRequireDefault(_lodashIsplainobject);
 
@@ -31217,7 +31297,7 @@
 	}
 
 /***/ },
-/* 315 */
+/* 317 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31228,9 +31308,9 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var baseFor = __webpack_require__(316),
-	    isArguments = __webpack_require__(317),
-	    keysIn = __webpack_require__(318);
+	var baseFor = __webpack_require__(318),
+	    isArguments = __webpack_require__(319),
+	    keysIn = __webpack_require__(320);
 
 	/** `Object#toString` result references. */
 	var objectTag = '[object Object]';
@@ -31326,7 +31406,7 @@
 
 
 /***/ },
-/* 316 */
+/* 318 */
 /***/ function(module, exports) {
 
 	/**
@@ -31380,7 +31460,7 @@
 
 
 /***/ },
-/* 317 */
+/* 319 */
 /***/ function(module, exports) {
 
 	/**
@@ -31631,7 +31711,7 @@
 
 
 /***/ },
-/* 318 */
+/* 320 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -31642,8 +31722,8 @@
 	 * Copyright 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 * Available under MIT license <https://lodash.com/license>
 	 */
-	var isArguments = __webpack_require__(317),
-	    isArray = __webpack_require__(319);
+	var isArguments = __webpack_require__(319),
+	    isArray = __webpack_require__(321);
 
 	/** Used to detect unsigned integer values. */
 	var reIsUint = /^\d+$/;
@@ -31769,7 +31849,7 @@
 
 
 /***/ },
-/* 319 */
+/* 321 */
 /***/ function(module, exports) {
 
 	/**

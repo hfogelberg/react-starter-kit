@@ -1,17 +1,12 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
-import {signUp} from '../actions/actions_index';
-import { Router, browserHistory } from 'react-router';
+import {login} from '../actions/actions_index';
 
 class SignUp extends Component {
-
   onSubmit(props) {
     console.log('onSubmit', props);
-    this.props.signUp(props).
-      then(() => {
-        browserHistory.push('/signupresponse');
-      });
+    this.props.login(props);
   }
 
   render() {
@@ -60,7 +55,7 @@ function validate(values) {
 }
 
 export default reduxForm({
-  form: 'SignUpForm',
+  form: 'LoginForm',
   fields: ['username', 'password'],
   validate
-}, null, {signUp})(SignUp);
+}, null, {login})(login);

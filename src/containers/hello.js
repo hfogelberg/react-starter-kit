@@ -18,10 +18,4 @@ function mapStateToProps({message}){
   return { message };
 }
 
-
-// function mapStateToProps(state){
-//   console.log('mapStateToProps', state.message);
-//   return { message: state.message };
-// }
-
 export default connect(mapStateToProps)(Hello);

@@ -44,6 +44,6 @@ function validate(values) {
 
 export default reduxForm({
   form: 'SayHelloForm',
-  fields: ['name', 'breed'],
+  fields: ['name'],
   validate
 }, null, {sayHello})(Hello);
