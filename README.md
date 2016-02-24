@@ -8,7 +8,11 @@ Yet another React Starter Kit. It includes
 - Node JS backend
 - Mongo Db
 - Token based authentication
-- Kharma plugged in (but no tets)
+- Kharma plugged in (but no tests)
+
+##To Do
+- Run under HTTPS
+- Improve Webpack with deployment script
 
 It's tailored to fit my needs, but feel free to use in any way you want if you like it. Or clone and improve of course.
 
