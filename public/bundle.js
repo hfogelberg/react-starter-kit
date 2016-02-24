@@ -26194,11 +26194,16 @@
 
 	var _reducer_sign_up2 = _interopRequireDefault(_reducer_sign_up);
 
+	var _reducer_login = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./reducer_login\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _reducer_login2 = _interopRequireDefault(_reducer_login);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var rootReducer = (0, _redux.combineReducers)({
 	  message: _reducer_hello2.default,
 	  user: _reducer_sign_up2.default,
+	  authenticated: _reducer_login2.default,
 	  form: _reduxForm.reducer
 	});
 
@@ -29489,7 +29494,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.SIGN_UP = exports.SAY_HELLO = undefined;
+	exports.LOGIN = exports.SIGN_UP = exports.SAY_HELLO = undefined;
+	exports.login = login;
 	exports.signUp = signUp;
 	exports.sayHello = sayHello;
 
@@ -29501,6 +29507,16 @@
 
 	var SAY_HELLO = exports.SAY_HELLO = 'SAY_HELLO';
 	var SIGN_UP = exports.SIGN_UP = 'SIGN_UP';
+	var LOGIN = exports.LOGIN = 'LOGIN';
+
+	function login(props) {
+	  var request = _axios2.default.post('/api/authenticate', props);
+	  console.log('LOGIN request', request);
+	  return {
+	    type: LOGIN,
+	    payload: request
+	  };
+	}
 
 	function signUp(props) {
 	  var request = _axios2.default.post('/api/users', props);
@@ -30814,7 +30830,7 @@
 	          _react2.default.createElement(
 	            'a',
 	            { className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
-	            _react2.default.createElement('i', { className: 'fa fa-user' }),
+	            _react2.default.createElement('i', { className: 'fa fa-lg fa-user' }),
 	            ' User ',
 	            _react2.default.createElement('span', { className: 'caret' })
 	          ),
