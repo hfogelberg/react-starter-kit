@@ -7,7 +7,7 @@ export default class App extends Component {
       <div>
         <h1>React-Redux Starter Kit</h1>
         <Navbar />
-        <div class = 'content'>          
+        <div className = 'content'>          
           {this.props.children}
         </div>
       </div>

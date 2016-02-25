@@ -2,12 +2,13 @@ import axios from 'axios';
 
 export const SAY_HELLO = 'SAY_HELLO';
 export const SIGN_UP = 'SIGN_UP';
-export const LOGIN = 'LOGIN';
+export const LOG_IN = 'LOG_IN';
 
 export function login(props) {
   const request = axios.post('/api/authenticate', props);
+  console.log('Login action', request);
   return {
-    type: LOGIN,
+    type: LOG_IN,
     payload: request
   };
 }

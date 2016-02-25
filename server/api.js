@@ -1,4 +1,33 @@
 module.exports = function(apiRouter, models, jwt, supersecret){
+	// User signup
+	apiRouter.route('/users')
+		.post(function(req, res){
+			console.log('POST users', req.body);
+			var user = new models.Users({
+				username: req.body.username,
+				password: req.body.password
+			});
+
+			user.save(function(err, result){
+				if(err) {
+					res.send(JSON.stringify({err: err}));
+				} else {
+					var token = jwt.sign({
+						name: user.username,
+					}, supersecret, {
+						expiresIn: 24 * 60 * 60
+					});
+					var message = 'User created with id ' + result._id;
+					console.log(message);
+					console.log('Token: ' + token);
+					res.json({
+						message: message,
+						token: token
+					});
+				}
+			});
+		});
+
 	// Return JSON Web Token if user is authenticated
 	// The token will be used by the middleware for all requests that require login
 	apiRouter.route('/authenticate')
@@ -22,22 +51,26 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 						console.log('User found', user);
 						var validPassword = user.comparePassword(req.body.password);
 						if(!validPassword) {
+							console.log('Password is not valid');
 							res.json({
 								success: false,
 								message: 'Wrong password'
 							});
 						} else {
+							console.log('Password is valid. Creating token');
 							var token = jwt.sign({
 								name: user.username,
 							}, supersecret, {
 								expiresIn: 24 * 60 * 60
 							});
 
+							var message = 'User successfully logged in. User id ' + user._id;
+							console.log(message);
+							console.log('Token: ' + token);
 							res.json({
-								success: true,
-								message: 'Enjoy your token',
+								message: message,
 								token: token
-							})
+							});
 						}
 					}
 				}
@@ -93,41 +126,6 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 	});
 
 	// API calls that require a token
-	apiRouter.route('/users')
-		.get(function(req, res) {
-			console.log('GET users');
-			models.Users.find(function(err, users) {
-				if(err) res.send(err);
-				res.json(users);
-			});
-		})
-		.post(function(req, res){
-			console.log('POST users', req.body);
-			var user = new models.Users({
-				username: req.body.username,
-				password: req.body.password
-			});
-
-			user.save(function(err, result){
-				if(err) {
-					res.send(JSON.stringify({err: err}));
-				} else {
-					var token = jwt.sign({
-						name: user.username,
-					}, supersecret, {
-						expiresIn: 24 * 60 * 60
-					});
-					var message = 'User created with id ' + result._id;
-					console.log(message);
-					console.log('Token: ' + token);
-					res.json({
-						message: message,
-						token: token
-					});
-				}
-			});
-		});
-
 	apiRouter.route('/users/:user_id')
 		.get(function(req, res) {
 			models.Users.findById(req.params.user_id, function(err, user) {

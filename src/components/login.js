@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {login} from '../actions/actions_index';
+import { Router, browserHistory } from 'react-router';
 
 class Login extends Component {
   onSubmit(props) {
     console.log('onSubmit', props);
-    this.props.login(props);
+    this.props.login(props).
+      then(() => {
+        browserHistory.push('/loginresponse');
+      });
   }
 
   render() {
