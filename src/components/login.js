@@ -1,9 +1,9 @@
-import React, {Component, PropTypes} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {reduxForm} from 'redux-form';
 import {login} from '../actions/actions_index';
 
-class SignUp extends Component {
+class Login extends Component {
   onSubmit(props) {
     console.log('onSubmit', props);
     this.props.login(props);
@@ -14,7 +14,7 @@ class SignUp extends Component {
 
     return (
       <div className='col-sm-offset-1 col-sm-6'>
-        <h2>Sign up</h2>
+        <h2>Log in</h2>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
           <div className={`form-group ${username.touched && username.invalid ? 'has-danger' : ''}`}>
             <label>User name</label>
@@ -58,4 +58,4 @@ export default reduxForm({
   form: 'LoginForm',
   fields: ['username', 'password'],
   validate
-}, null, {login})(login);
+}, null, {login})(Login);

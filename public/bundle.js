@@ -30650,9 +30650,32 @@
 
 /***/ },
 /* 307 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	exports.default = function () {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? INITIAL_STATE : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actions_index.LOGIN:
+	      console.log('Login reducer', action.payload.data);
+	      return action.payload.data;
+	      break;
+	    default:
+	      return state;
+	      break;
+	  }
+	};
+
+	var _actions_index = __webpack_require__(288);
+
+	var INITIAL_STATE = { user: {} };
 
 /***/ },
 /* 308 */
@@ -30686,9 +30709,17 @@
 
 	var _signup2 = _interopRequireDefault(_signup);
 
+	var _login = __webpack_require__(323);
+
+	var _login2 = _interopRequireDefault(_login);
+
 	var _signup_response = __webpack_require__(314);
 
 	var _signup_response2 = _interopRequireDefault(_signup_response);
+
+	var _secret_page = __webpack_require__(322);
+
+	var _secret_page2 = _interopRequireDefault(_secret_page);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -30698,7 +30729,9 @@
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _hello2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
-	  _react2.default.createElement(_reactRouter.Route, { path: '/signupresponse', component: _signup_response2.default })
+	  _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _login2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/signupresponse', component: _signup_response2.default }),
+	  _react2.default.createElement(_reactRouter.Route, { path: '/secretpage', component: _secret_page2.default })
 	);
 
 /***/ },
@@ -30826,6 +30859,15 @@
 	        ),
 	        _react2.default.createElement(
 	          'li',
+	          null,
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/secretpage' },
+	            'Secret page'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'li',
 	          { className: 'pull-right dropdown' },
 	          _react2.default.createElement(
 	            'a',
@@ -30850,8 +30892,8 @@
 	              'li',
 	              null,
 	              _react2.default.createElement(
-	                'a',
-	                { href: '#' },
+	                _reactRouter.Link,
+	                { to: '/login' },
 	                'Log in'
 	              )
 	            )
@@ -32033,6 +32075,173 @@
 
 	module.exports = isArray;
 
+
+/***/ },
+/* 322 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SecretPage = function SecretPage() {
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'secretPage' },
+	    _react2.default.createElement(
+	      'h2',
+	      null,
+	      'Secret Page'
+	    ),
+	    _react2.default.createElement(
+	      'p',
+	      null,
+	      'You must be logged and have a valid tokenin to see this page.'
+	    )
+	  );
+	};
+
+	exports.default = SecretPage;
+
+/***/ },
+/* 323 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(160);
+
+	var _reduxForm = __webpack_require__(239);
+
+	var _actions_index = __webpack_require__(288);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Login = function (_Component) {
+	  _inherits(Login, _Component);
+
+	  function Login() {
+	    _classCallCheck(this, Login);
+
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Login).apply(this, arguments));
+	  }
+
+	  _createClass(Login, [{
+	    key: 'onSubmit',
+	    value: function onSubmit(props) {
+	      console.log('onSubmit', props);
+	      this.props.login(props);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var _props$fields = _props.fields;
+	      var username = _props$fields.username;
+	      var password = _props$fields.password;
+	      var handleSubmit = _props.handleSubmit;
+
+
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'col-sm-offset-1 col-sm-6' },
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          'Log in'
+	        ),
+	        _react2.default.createElement(
+	          'form',
+	          { onSubmit: handleSubmit(this.onSubmit.bind(this)) },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group ' + (username.touched && username.invalid ? 'has-danger' : '') },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'User name'
+	            ),
+	            _react2.default.createElement('input', _extends({ type: 'text', className: 'form-control' }, username)),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'text-help' },
+	              username.touched ? username.error : ''
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'form-group ' + (password.touched && password.invalid ? 'has-danger' : '') },
+	            _react2.default.createElement(
+	              'label',
+	              null,
+	              'Password'
+	            ),
+	            _react2.default.createElement('input', _extends({ type: 'password', className: 'form-control' }, password)),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'text-help' },
+	              password.touched ? password.error : ''
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'button',
+	            { type: 'submit', className: 'btn btn-primary' },
+	            'Submit'
+	          )
+	        ),
+	        _react2.default.createElement('br', null)
+	      );
+	    }
+	  }]);
+
+	  return Login;
+	}(_react.Component);
+
+	function validate(values) {
+	  var errors = {};
+
+	  if (!values.username) {
+	    errors.title = 'Enter a user name';
+	  }
+
+	  if (!values.password) {
+	    errors.title = 'Enter a password';
+	  }
+
+	  return errors;
+	}
+
+	exports.default = (0, _reduxForm.reduxForm)({
+	  form: 'LoginForm',
+	  fields: ['username', 'password'],
+	  validate: validate
+	}, null, { login: _actions_index.login })(Login);
 
 /***/ }
 /******/ ]);

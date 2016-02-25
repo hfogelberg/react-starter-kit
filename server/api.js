@@ -60,12 +60,39 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 			});
 		});
 
-	// middleware
+	// Middleware
+	// Authenticate token
 	apiRouter.use(function(req, res, next) {
-	  console.log('API called ' + req.body);
-	  next();
+	  console.log('API middleware called ' + req.body);
+		var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+		if (token) {
+			console.log('Token to authenticate: ' + token);
+			jwt.verify(token, supersecret, function (err, decoded){
+				if (err) {
+					return res.status(403).send({
+						succes: false,
+						message: 'Failed to authenticate token'
+					});
+				} else {
+					// Token is OK
+					// Save for request and use for other routes
+					req.decoded = decoded;
+					next()
+				}
+			});
+		} else {
+			// No token.
+			// Return HTTP 403 (Access forbidden)
+			console.log('There\'s no token');
+			return res.status(403).send({
+				success: false,
+				message: 'No token provided.'
+			});
+		}
 	});
 
+	// API calls that require a token
 	apiRouter.route('/users')
 		.get(function(req, res) {
 			console.log('GET users');
