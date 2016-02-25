@@ -7,10 +7,12 @@ import SignUp from './components/signup';
 import Login from './components/login';
 import SignupReponse from './containers/signup_response';
 import SecretPage from './components/secret_page';
+import NotFound from './components/not_found';
 
 export default (
   <Route path='/' component={App} >
     <IndexRoute component={Hello} />
+    <NotFoundRoute handler={NotFound} />
     <Route path='/about' component={About} />
     <Route path='/signup' component={SignUp} />
     <Route path='/login' component={Login} />

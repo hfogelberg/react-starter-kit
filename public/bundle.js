@@ -30721,12 +30721,17 @@
 
 	var _secret_page2 = _interopRequireDefault(_secret_page);
 
+	var _not_found = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./components/not_found\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _not_found2 = _interopRequireDefault(_not_found);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = _react2.default.createElement(
 	  _reactRouter.Route,
 	  { path: '/', component: _app2.default },
 	  _react2.default.createElement(_reactRouter.IndexRoute, { component: _hello2.default }),
+	  _react2.default.createElement(NotFoundRoute, { handler: _not_found2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _about2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _signup2.default }),
 	  _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _login2.default }),
