@@ -6,7 +6,8 @@ Yet another React Starter Kit. It includes
 - React Router
 - React Forms
 - Node JS backend
-- Mongo Db
+- Mongo Db integration
+- Bootstrap
 - Token based authentication
 - Kharma plugged in (but no tests)
 
@@ -19,6 +20,8 @@ It's tailored to fit my needs, but feel free to use in any way you want if you l
 
 To get going
 ```
+$ npm install --g nodemon
+$ git clone https://github.com/hfogelberg/react-starter-kit
 $ npm install
 $ mongod
 $ npm run dev

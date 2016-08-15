@@ -3,30 +3,45 @@ module.exports = function(apiRouter, models, jwt, supersecret){
 	apiRouter.route('/users')
 		.post(function(req, res){
 			console.log('POST users', req.body);
-			var user = new models.Users({
-				username: req.body.username,
-				password: req.body.password
-			});
+			var message = '',
+					token = '';
 
-			user.save(function(err, result){
-				if(err) {
-					res.send(JSON.stringify({err: err}));
+			// Check if there's allready a user with that Id. Must be unique
+			models.Users.find({username: req.body.username}, function(err, res){
+				console.log('Checking user with name: ' + req.body.username);
+				if(res.length > 0) {
+					console.log('User name not unique');
+					message = 'That user name is already in use.';
 				} else {
-					var token = jwt.sign({
-						name: user.username,
-					}, supersecret, {
-						expiresIn: 24 * 60 * 60
-					});
-					var message = 'User created with id ' + result._id;
-					console.log(message);
-					console.log('Token: ' + token);
-					res.json({
-						message: message,
-						token: token
-					});
-				}
-			});
+				var user = new models.Users({
+					username: req.body.username,
+					password: req.body.password
+				});
+
+				user.save(function(err, result){
+					if(err) {
+						res.send(JSON.stringify({err: err}));
+					} else {
+						token = jwt.sign({
+							name: user.username,
+						}, supersecret, {
+							expiresIn: 24 * 60 * 60
+						});
+						message = 'User created with id ' + result._id;
+					}
+				});
+			}
 		});
+
+		console.log(message);
+		console.log('Token: ' + token);
+
+		res.json({
+			message: message,
+			token: token
+		});
+
+	});
 
 	// Return JSON Web Token if user is authenticated
 	// The token will be used by the middleware for all requests that require login
