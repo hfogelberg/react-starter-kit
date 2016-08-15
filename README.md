@@ -27,6 +27,8 @@ $ mongod
 $ npm run dev
 ```
 
+If you try to submit something to the database it will end up in the hellos collection in the test Db.
+
 And to run the excellent test:
 ```
 $ npm test
